@@ -10,7 +10,7 @@
 <script type="text/javascript">
 /* <![CDATA[ */
   StackMob.init({
-   appName: 'fanduratheapp',
+   appName: 'grubsafe',
    dev: true
   });
 /* ]]> */
@@ -20,6 +20,8 @@
 <body>
  
 <input id="username" type="text" value=""/>
+<input id="firstname" type="text" value=""/>
+<input id="lastname" type="text" value=""/>
 <input id="create" type="submit" onclick="create();" value="Create User"/>
 <input id="read" type="submit" onclick="read();" value="Read User"/>
  
@@ -28,11 +30,14 @@
  
   function create() {
     var username = document.getElementById('username').value;
-    if (username != '') {
+ var firstname = document.getElementById('firstname').value;
+	var lastname = document.getElementById('lastname').value;
+    if (username != '' && firstname != '' && lastname != '') {
       var user = new StackMob.User({
         'username': username,
-        'password': 'afakepassword',
-        'age': 30
+		'firstname': firstname,
+		'lastname': lastname,
+        'password': 'afakepassword'
       });
  
       //Call StackMob via Ajax to create a user
@@ -50,7 +55,9 @@
  
   function read() {
     var username = document.getElementById('username').value;
-    if (username != '') {
+	var firstname = document.getElementById('firstname').value;
+	var lastname = document.getElementById('lastname').value;
+    if (username != '' && firstname != '' && lastname != '') {
       //Call StackMob via Ajax to read a user
       var fetchuser = new StackMob.User({ 'username': username });
       fetchuser.fetch({
